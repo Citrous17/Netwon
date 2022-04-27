@@ -1,13 +1,11 @@
 # bot.py
 import os
 import math
-from cv2 import add
 from dotenv import load_dotenv
 from discord.ext import commands
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-
 
 bot = commands.Bot(command_prefix='!Newton ')
 
@@ -29,6 +27,11 @@ async def computation(ctx, problem):
             problemArray[i] = float(v)
         ans += math.fsum(problemArray)
     response = "```\n" + str(problem) + "\n" + str(ans) + "```"
+    await ctx.send(response)
+
+@bot.command(name="info")
+async def information(ctx):
+    response = "I am a bot that can help you with your math homework!"
     await ctx.send(response)
 
 bot.run(TOKEN)
