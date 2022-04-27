@@ -31,7 +31,7 @@ async def computation(ctx, problem):
 
 @bot.command(name="info")
 async def information(ctx):
-    response = "I am a bot that can help you with your math homework!"
+    response = "I am a bot that specializes in all problems for Calculus 1 and Calculus 2!"
     await ctx.send(response)
 
 bot.run(TOKEN)
