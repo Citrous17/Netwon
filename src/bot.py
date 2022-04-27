@@ -13,11 +13,6 @@ bot = commands.Bot(command_prefix='!Newton ')
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
-@bot.command(name="add")
-async def addition(ctx, num1: float, num2: float):
-    response = num1 + num2
-    await ctx.send(response)
-
 @bot.command(name="Compute")
 async def computation(ctx, problem):
     ans = 0
