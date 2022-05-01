@@ -1,6 +1,7 @@
 # bot.py
 import os
 import math
+import urllib.parse
 import xml.etree.ElementTree as ET
 import requests
 from dotenv import load_dotenv
@@ -28,7 +29,10 @@ async def computation(ctx, problem):
 def processCommand(query, command):
     if "ask Wolfram" in command:
         request = "http://api.wolframalpha.com/v2/query?input=" + str(query) + "&appid=" + str(WOLFRAM_TOKEN) + "&format=image"
-        return str(request)
+        tree = ET.parse(requests.get(request))
+        root = tree.getroot()
+        
+        return tree
     return "error"
     
 @bot.command(name="info")
