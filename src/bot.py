@@ -21,6 +21,7 @@ async def on_ready():
 async def computation(ctx, problem):
     query = problem[problem.find('(')+1:problem.find(')')]
     await ctx.send(query)
+    query = urllib.parse.quote(query)
     wolframResponse = processCommand(query, problem)
     await ctx.send(problem)
     response = str(wolframResponse)
@@ -29,10 +30,10 @@ async def computation(ctx, problem):
 def processCommand(query, command):
     if "ask Wolfram" in command:
         request = "http://api.wolframalpha.com/v2/query?input=" + str(query) + "&appid=" + str(WOLFRAM_TOKEN) + "&format=image"
+        return request
         tree = ET.parse(requests.get(request))
         root = tree.getroot()
-        
-        return tree
+          
     return "error"
     
 @bot.command(name="info")
